@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* styles.css */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: inline-block;
+        background-color: #555;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #ddd;
+        color: #333;
+      }
+
+      .products-display {
+        width: 100%;
+        padding-top: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        column-gap: 39px;
+        row-gap: 8px;
+      }
+
+      .prod-card {
+        width: 320px;
+        height: auto;
+        background-color: greenyellow;
+        position: relative;
+        border: 2px black solid;
+        color: white;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .prod-card img {
+        width: 100%;
+        transition: transform 0.5s;
+      }
+
+      .prod-card:hover img {
+        transform: scale(1.2);
+      }
+
+      .card-footer {
+        padding: 10px;
+        width: 100%;
+        /* height: 15%; */
+        display: flex;
+        justify-content: space-between;
+        /* align-items: center; */
+        background-color: rgba(0, 0, 255, 0.5);
+        transition: bottom 0.5s;
+        position: absolute;
+        /* bottom: -70px; */
+        bottom: 0;
+      }
+
+      .prod-card:hover .card-footer {
+        bottom: 0;
+      }
+
+      .L-contain {
+        /* display: flex;
+    flex-direction: column; */
+        /* align-items: flex-start; */
+        /* gap: 0; */
+      }
+      .L-contain > * {
+        margin: 0;
+        margin-bottom: 4px;
+      }
+      /* .L-contain h3{
+    margin: 0;
+}
+.L-contain p{
+    margin: 0;
+} */
+      .R-contain {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .R-contain i {
+        font-size: 22px;
+        cursor: pointer;
+        color: white;
+       
+        /* background-color: green; */
+      }
+      .R-contain {
+        margin-right: 20px;
+      }
+      .R-contain i:hover {
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <ul>
+        <li class="list-item nav-item">
+          <a class="normal-btn" onclick="showProducts('All')">All</a>
+        </li>
+        <li class="list-item nav-item">
+          <a class="normal-btn" onclick="showProducts('App')">App</a>
+        </li>
+        <li class="list-item nav-item">
+          <a class="normal-btn" onclick="showProducts('Card')">Card</a>
+        </li>
+        <li class="list-item nav-item">
+          <a class="normal-btn" onclick="showProducts('Web')">Web</a>
+        </li>
+        <li class="list-item nav-item">
+          <a class="normal-btn" onclick="showProducts('3d')">3D</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Product Display Section -->
+    <div class="products-display" id="product-cards">
+      <!-- Product cards will be dynamically generated here -->
+    </div>
+    <script>
+      // script.js
+
+      function showProducts(category) {
+        const productCards = document.getElementById("product-cards");
+        productCards.innerHTML = ""; // Clear existing cards
+
+        // Array to hold product data for different categories
+        const allProducts = {
+          All: [
+            {
+              img: "Photo and Video/img/portfolio/portfolio-1.jpg",
+              name: "Product 1",
+              description: "Description 1",
+            },
+            {
+              img: "Photo and Video/img/portfolio/portfolio-2.jpg",
+              name: "Product 2",
+              description: "Description 2",
+            },
+            {
+              img: "Photo and Video/img/portfolio/portfolio-3.jpg",
+              name: "Product 3",
+              description: "Description 3",
+            },
+            {
+              img: "Photo and Video/img/portfolio/portfolio-4.jpg",
+              name: "Product 4",
+              description: "Description 4",
+            },
+          ],
+          App: [
+            {
+              img: "images/app1.jpg",
+              name: "App 1",
+              description: "App Description 1",
+            },
+            {
+              img: "images/app2.jpg",
+              name: "App 2",
+              description: "App Description 2",
+            },
+          ],
+          Card: [
+            {
+              img: "images/card1.jpg",
+              name: "Card 1",
+              description: "Card Description 1",
+            },
+            {
+              img: "images/card2.jpg",
+              name: "Card 2",
+              description: "Card Description 2",
+            },
+          ],
+          Web: [
+            {
+              img: "images/web1.jpg",
+              name: "Web 1",
+              description: "Web Description 1",
+            },
+            {
+              img: "images/web2.jpg",
+              name: "Web 2",
+              description: "Web Description 2",
+            },
+          ],
+          "3d": [
+            {
+              img: "images/3d1.jpg",
+              name: "3D 1",
+              description: "3D Description 1",
+            },
+            {
+              img: "images/3d2.jpg",
+              name: "3D 2",
+              description: "3D Description 2",
+            },
+          ],
+        };
+
+        // Get the products for the selected category or all products if 'All' is selected
+        const products = allProducts[category];
+
+        // Create and display cards for each product
+        products.forEach((product) => {
+          const card = document.createElement("div");
+          card.classList.add("prod-card","flex-column");
+
+          const imgElement = document.createElement("img");
+          imgElement.src = product.img;
+          imgElement.alt = product.name;
+
+          const cardFooter = document.createElement("div");
+          cardFooter.classList.add("card-footer");
+
+          const LContain = document.createElement("div");
+          LContain.classList.add("L-contain");
+
+          const productName = document.createElement("h3");
+          productName.textContent = product.name;
+
+          const productDescription = document.createElement("p");
+          productDescription.textContent = product.description;
+
+          LContain.appendChild(productName);
+          LContain.appendChild(productDescription);
+
+          const RContain = document.createElement("div");
+          RContain.classList.add("R-contain");
+
+          // Create icon 1 with <a> tag
+          const link1 = document.createElement("a");
+          link1.href = " "; // Or any link you want
+          link1.onclick = function () {
+            showProductDetails(product.name);
+          }; // Function call on click
+          const icon1 = document.createElement("i");
+          icon1.classList.add("fa-solid", "fa-plus"); // Example FontAwesome icon class
+          link1.appendChild(icon1);
+
+          // Create icon 2 with <a> tag
+          const link2 = document.createElement("a");
+          link2.href = " "; // Or any link you want
+          link2.onclick = function () {
+            attachFile(product.name);
+          }; // Function call on click
+          const icon2 = document.createElement("i");
+          icon2.classList.add("fa-solid", "fa-paperclip"); // Example FontAwesome icon class
+          link2.appendChild(icon2);
+
+          RContain.appendChild(link1);
+          RContain.appendChild(link2);
+
+          cardFooter.appendChild(LContain);
+          cardFooter.appendChild(RContain);
+
+          card.appendChild(imgElement);
+          card.appendChild(cardFooter);
+
+          productCards.appendChild(card);
+        });
+      }
+
+      // Example function to show product details
+      function showProductDetails(productName) {
+        alert(`Showing details for ${productName}`);
+      }
+
+      // Example function to attach file
+      function attachFile(productName) {
+        alert(`Attaching file for ${productName}`);
+      }
+    </script>
+  </body>
+</html>
